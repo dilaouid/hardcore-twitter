@@ -1,12 +1,26 @@
 {
-    "manifest_version": 3,
+    "manifest_version": 2,
     "name": "Hardcore Twitter",
     "version": "1.0",
+    "permissions": ["activeTab", "storage"],
     "description": "Are you a pro gamer? Try this egoless version of Twitter, and prove to yourself that you use a social network only for yourself",
     "icons": {
         "16": "/images/icon16.png",
         "48": "/images/icon48.png",
         "128": "/images/icon128.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "16": "/images/icon16.png",
+            "48": "/images/icon48.png",
+            "128": "/images/icon128.png"
+        },
+        "default_title": "Hardcore Twitter",
+        "default_popup": "index.html"
+    },
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
     },
     "content_scripts": [
         {
@@ -14,11 +28,16 @@
                 "https://*.twitter.com/*",
                 "https://twitter.com/*"
             ],
-            "css": [
-                "main.css"
-            ],
+            "js": ["hardcore.js"],
             "run_at": "document_idle"
         }
+    ],
+    "web_accessible_resources": [
+        "/styles/follow.css",
+        "/styles/notifications.css",
+        "/styles/social_context.css",
+        "/styles/social_interactions.css",
+        "/styles/stats.css"
     ]
 
 }
